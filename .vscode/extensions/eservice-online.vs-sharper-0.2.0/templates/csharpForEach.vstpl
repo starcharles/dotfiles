@@ -1,4 +1,0 @@
-foreach (var ${1:item} in ${0:items})
-{
-    {{text}}
-}

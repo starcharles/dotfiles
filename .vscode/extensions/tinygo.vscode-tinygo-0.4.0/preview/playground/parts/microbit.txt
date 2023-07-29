@@ -1,1 +1,0 @@
-  <image href="https://tech.microbit.org/docs/hardware/assets/microbit-v2-assembly-front.png" opacity="0.2" width="82.56" height="64.70" x="-25.668" y="-10.324"/>

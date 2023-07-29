@@ -1,8 +1,0 @@
-try
-{
-    {{text}}
-}
-catch (Exception ex)
-{
-    $0
-}
