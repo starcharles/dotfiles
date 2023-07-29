@@ -1,0 +1,8 @@
+try
+{
+    {{text}}
+}
+finally
+{
+    $0
+}

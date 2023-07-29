@@ -1,0 +1,21 @@
+{
+  "name": "docker-linter-server",
+  "version": "0.4.0",
+  "author": "Henrik Sjööh <hello@enhenrik.nu> (http://www.enhenrik.nu)",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "vscode-languageserver": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.53",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  },
+  "scripts": {
+    "compile": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc -p .",
+    "watch": "installServerIntoExtension ../client ./package.json ./tsconfig.json && tsc --watch -p ."
+  }
+}

@@ -1,0 +1,113 @@
+<h1 id="whats-new-in-openapi-swagger-editor-version-40">What&#39;s new in OpenAPI (Swagger) Editor version 4.0</h1>
+<h2 id="quickfixes-for-security-issues-found-by-security-audit">QuickFixes for security issues found by Security Audit</h2>
+<p>The extension now not only locates but also helps fix security issues in your OpenAPI definition.</p>
+<h3 id="individual-fixes">Individual fixes:</h3>
+<ol>
+<li>Perform the Security Audit by clicking the <strong>42c</strong> button.</li>
+<li>When you click some of the error lines in your OpenAPI file, you will see the QuickFix icon show up on the left of the line.</li>
+<li>Click the icon and select the QuickFix to apply.</li>
+<li>Tweak the values in the inserted code snippet as you see fit.</li>
+</ol>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Quick_Fixes_in_VSCode.gif" alt="Quick Fixes in VSCode"></p>
+<h3 id="bulk-fixes">Bulk fixes:</h3>
+<p>If your OpenAPI file contains multiple similar issues - for example, a parameter with the same name is missing the pattern definition - you can fix all such occurrences in one go:</p>
+<ol>
+<li>Fix the first occurrences and supply the proper values in the code snippet.</li>
+<li>Go to the next occurrences and use the bulk QuickFix. This bulk QuickFix will reuse the values that you used previously for the parameter with the same name.</li>
+</ol>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/VSCode_OpenAPI_bulk_security_fixes.gif" alt="Bulk Fixes in VSCode"></p>
+<h2 id="html-preview-pane">HTML Preview Pane</h2>
+<p>You can get a documentation-style preview of the API you are editing by clicking the Preview button <img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Preview_button.png" alt=""> at the top right:</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/OpenAPI_preview_pane.gif" alt="OpenAPI Preview Pane"></p>
+<h2 id="support-for-external-http-references">Support for external HTTP references</h2>
+<p>OpenAPI definition files can be composite with parts of the API definition stored in external files and referenced in the main file using the <code>$ref</code> notation. We now support not only local component files but also ones referenced with HTTP/HTTPS URLs. </p>
+<p>For security reasons, the domains from which you want such component files to be downloaded should be added to the <strong>Approved Hostnames</strong> list in the extension&#39;s setting. </p>
+<h1 id="whats-new-in-openapi-swagger-editor-version-30">What&#39;s new in OpenAPI (Swagger) Editor version 3.0</h1>
+<p>Security Audit now supports composite OpenAPI files.</p>
+<p>42Crunch API Contract Security Audit is a static application security testing (SAST) service that OpenAPI (Swagger) Editor invokes for the OpenAPI file currently opened in VS Code when you click the <strong>42c</strong> button at the top right. The extension sends the file to the remote service that performs 200+ security checks, and sends back a report that is rendered in VS Code.</p>
+<p>However, OpenAPI definiton files can be composite. In that case, parts of the API definition (for example, schemas for shared payloads types) can be stored in external files and referenced in the main file using the <code>$ref</code> notation.</p>
+<p>Starting with OpenAPI (Swagger) Editor v3.0, such composite OpenAPI files are fully supported, including auditing. Simply open the main OpenAPI file (JSON or YAML), and click the <strong>42c</strong> button at the top right. The extension  automatically finds and parses all <code>$ref</code> references, locates the possible references in other files, aggregates the referenced information in the API contract, and runs the audit for it.</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/composite_openapi_file_security_audit_960.gif" alt=""></p>
+<p><strong>Note</strong>: When dealing with composite API definitions, you should invoke Security Audit from the main (parent) file that contains the actual API definition. The shared component files (children) might not follow the requirements of the OpenAPI Specification (OAS) to the full, and thus the extension might not detect them as OpenAPI files. The OpenAPI-specific functions (such as audit, schema checks, outline, and code completion) would not be available for such files.</p>
+<h1 id="whats-new-in-openapi-swagger-editor-version-20">What&#39;s new in OpenAPI (Swagger) Editor version 2.0</h1>
+<p>We have updated our OpenAPI extension to version 2.0. This is a major release with the Security Audit getting to where we wanted it to be for its initial scope and a few other improvements.</p>
+<ul>
+<li><a href="#whats-new-in-openapi-swagger-editor-version-40">What&#39;s new in OpenAPI (Swagger) Editor version 4.0</a><ul>
+<li><a href="#quickfixes-for-security-issues-found-by-security-audit">QuickFixes for security issues found by Security Audit</a><ul>
+<li><a href="#individual-fixes">Individual fixes:</a></li>
+<li><a href="#bulk-fixes">Bulk fixes:</a></li>
+</ul>
+</li>
+<li><a href="#html-preview-pane">HTML Preview Pane</a></li>
+<li><a href="#support-for-external-http-references">Support for external HTTP references</a></li>
+</ul>
+</li>
+<li><a href="#whats-new-in-openapi-swagger-editor-version-30">What&#39;s new in OpenAPI (Swagger) Editor version 3.0</a></li>
+<li><a href="#whats-new-in-openapi-swagger-editor-version-20">What&#39;s new in OpenAPI (Swagger) Editor version 2.0</a><ul>
+<li><a href="#api-security-audit">API Security Audit</a><ul>
+<li><a href="#navigate-the-issues-in-the-audit-report">Navigate the issues in the audit report</a></li>
+<li><a href="#jump-to-the-line-in-the-code">Jump to the line in the code</a></li>
+<li><a href="#navigate-back-to-full-report">Navigate back to full report</a></li>
+<li><a href="#submit-feedback">Submit feedback</a></li>
+</ul>
+</li>
+<li><a href="#other-improvements">Other improvements</a><ul>
+<li><a href="#api-navigation-extended-to-parameters-and-responses">API navigation extended to parameters and responses</a></li>
+<li><a href="#api-navigation-no-longer-disappearing-while-api-is-being-edited">API navigation no longer disappearing while API is being edited</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="api-security-audit">API Security Audit</h2>
+<p>OpenAPI Security Audit is a static analysis of OpenAPI files. The service <em>does not</em> call the actual API endpoint. It simply looks at the OpenAPI file itself and checks if it is following industry security best practices.</p>
+<p>The checks that are run are derived from the <a href="https://apisecurity.io/encyclopedia/content/api-security-encyclopedia.htm">API Security Encyclopedia at APISecurity.io</a>.</p>
+<p><strong>To run Security Audit for the currently opened OpenAPI file:</strong></p>
+<ul>
+<li>Click the <strong>42c</strong> button at the upper right of the OpenAPI file you are editing.</li>
+</ul>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Perform%20REST%20API%20Security%20Audit.gif" alt=""></p>
+<p>Note:</p>
+<ul>
+<li>To run Security Audit from VS Code, you need a token. On the first time, you are asked to provide your email address. When you supply the address, the extension requests the token to be sent to your mailbox. Once you get the token, paste it in the prompt in VS Code, and you are all set. From now on, all you need to do is to click the button to run the audit.</li>
+</ul>
+<h3 id="navigate-the-issues-in-the-audit-report">Navigate the issues in the audit report</h3>
+<p>After the audit finishes, you get the audit report directly in the VS Code view, side by side with your code. Depending on your API definition, the report might be long, so here are some handy ways to navigate the found issues.</p>
+<ol>
+<li>To scroll through all issues and their details, use the text panel on the right.</li>
+</ol>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Perform%20REST%20API%20Security%20Audit.gif" alt=""></p>
+<ol start="2">
+<li>Hover on an element that is underlined or marked with three dots (recommendations) in your code to see what the issues in that spot are. If you click on view the descriptions of only these issues, the rest of details are filtered out from the text panel, so you have less to scroll through.</li>
+</ol>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Details%20for%20specific%20issues.gif" alt=""></p>
+<ol start="3">
+<li>For a quick overall look, check the counts in the Status Bar. The different icons match the severity of the issue:</li>
+</ol>
+<ul>
+<li>Error: critical or high </li>
+<li>Warning: medium</li>
+<li>Info: low</li>
+</ul>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/List%20of%20API%20Sec%20Issues.gif" alt=""></p>
+<ol start="4">
+<li>Click the icons in the Status Bar to open the PROBLEMS panel and scroll through the issue titles. The issues are ordered from most to least severe, so it is easy for fix the worst offenders first. Note that recommendations are not listed in the PROBLEMS panel.</li>
+<li>Click on an issue in the PROBLEMS panel to jump to view it inline in your API definition.</li>
+</ol>
+<h3 id="jump-to-the-line-in-the-code">Jump to the line in the code</h3>
+<p>We have added the ability to jump to the specific place in the API definition for each error. To do this, simply click the hyperlink in the report.</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Jump%20to%20line.gif" alt=""></p>
+<h3 id="navigate-back-to-full-report">Navigate back to full report</h3>
+<p>When you read Security Audit information for a particular issue, you can now jump back to the full security audit report by clicking the <strong>Go back to full report</strong> link at the bottom of the article.</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Navigate%20back%20to%20full%20report.gif" alt=""></p>
+<h3 id="submit-feedback">Submit feedback</h3>
+<p>Security Audits can be tricky. If you believe that the static analysis misinterpreted your API definition, missed something, or provided a description or mitigation advice that can be improved, click the <strong>Please submit your feedback for the security audit <a href="https://github.com/42Crunch/vscode-openapi/issues">here</a></strong> link at the top of the full report and submit a GitHub ticket.</p>
+<h2 id="other-improvements">Other improvements</h2>
+<h3 id="api-navigation-extended-to-parameters-and-responses">API navigation extended to parameters and responses</h3>
+<p>API navigation tree used to only go 2 levels deep: to paths and operations. You can now go down two levels more: to specific parameters and responses.</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Parameters%20and%20responses.gif" alt=""></p>
+<h3 id="api-navigation-no-longer-disappearing-while-api-is-being-edited">API navigation no longer disappearing while API is being edited</h3>
+<p>As you edit OpenAPI files they temporarily become invalid from OpenAPI schema requirements perspective. In the past, this temporarily removed the API navigation tree entirely.</p>
+<p>We have now improved the usability and keep the current tree even when the schema is temporarily wrong. This means that you still see which elements your API has.</p>
+<p><img src="https://github.com/42Crunch/vscode-openapi/raw/master/images/Cached%20navigation.gif" alt=""></p>
+<p>Note: we still remove the ability to add new elements from the API navigation pane menu until your OpenAPI file becomes a proper JSON/YAML file again and we can build the live navigation model.</p>

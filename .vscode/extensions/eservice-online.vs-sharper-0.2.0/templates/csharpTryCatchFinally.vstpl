@@ -1,0 +1,12 @@
+try
+{
+    {{text}}
+}
+catch (Exception ex)
+{
+    $1
+}
+finally
+{
+    $0
+}

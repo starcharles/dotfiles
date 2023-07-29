@@ -1,0 +1,96 @@
+{
+	"name": "vscode-scheme",
+	"displayName": "vscode-scheme",
+	"description": "Scheme language support for VSCode",
+	"keywords": [
+		"scheme",
+		"syntax"
+	],
+	"version": "0.4.0",
+	"publisher": "sjhuangx",
+	"icon": "images/lambda.png",
+	"main": "./out/src/schemeMain",
+	"license": "MIT",
+	"author": {
+		"name": "Allen Huang"
+	},
+	"engines": {
+		"vscode": "^1.11.0"
+	},
+	"categories": [
+		"Languages",
+		"Snippets"
+	],
+	"activationEvents": [
+		"onLanguage:scheme"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sjhuangx/vscode-scheme.git"
+	},
+	"bugs": {
+		"url": "https://github.com/sjhuangx/vscode-scheme/issues"
+	},
+	"homepage": "https://github.com/sjhuangx/vscode-scheme",
+	"contributes": {
+		"languages": [
+			{
+				"id": "scheme",
+				"aliases": [
+					"Scheme",
+					"scheme"
+				],
+				"extensions": [
+					".scm",
+					".ss",
+					".sch",
+					".rkt"
+				],
+				"configuration": "./scheme.configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "scheme",
+				"scopeName": "source.scheme",
+				"path": "./syntaxes/scheme.tmLanguage"
+			},
+			{
+				"scopeName": "markdown.scheme.codeblock",
+				"path": "./syntaxes/scheme.markdown.tmLanguage.json",
+				"injectTo": [
+					"text.html.markdown"
+				]
+			}
+		],
+		"snippets": [
+			{
+				"language": "scheme",
+				"path": "./snippets/scheme.json"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "tsc -p ./",
+		"compile": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^2.0.3",
+		"vscode": "^1.0.0",
+		"mocha": "^2.3.3",
+		"@types/node": "^6.0.40",
+		"@types/mocha": "^2.2.32"
+	},
+	"__metadata": {
+		"id": "329c28a8-a1f5-41d6-be82-f643a45eed5d",
+		"publisherId": "05d64131-c400-45ca-8be3-23b3b2c0de7d",
+		"publisherDisplayName": "Allen Huang",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"installedTimestamp": 1689341060944,
+		"preRelease": false
+	}
+}
